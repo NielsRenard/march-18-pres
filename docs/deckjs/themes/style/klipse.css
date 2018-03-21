@@ -109,6 +109,11 @@ strong, th {
   font-weight: bold;
 }
 
+th {
+  border-bottom: 1px solid;
+  text-align: left;
+}
+
 td {
   vertical-align: top;
 }

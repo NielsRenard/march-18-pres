@@ -35,6 +35,13 @@
         >
         <div class="deck-container">
 
+            <pre class="hidden">
+                <code class="clojure">
+                  (ns my.m$macros)
+                  (require '[reagent.core :as r])
+                  (require '[reagent.ratom :as ratom])
+                </code>
+            </pre>
 
             <!-- slide 1  -->
 
@@ -96,7 +103,7 @@
             <section class="slide">
                 <h2>MQTT</h2>
 
-                <table style="width:100%;border:1px solid black;">
+                <table style="width:100%;border:1px solid;">
                     <tr>
                         <th>HTTP</th>
                         <th>MQTT</th>
@@ -123,15 +130,36 @@
             </section>
 
 
-        </div>
-        <!-- deck.status snippet -->
-        <p class="deck-status" aria-role="status">
-            <span class="deck-status-current"></span>
-            /
-            <span class="deck-status-total"></span>
-        </p>
+            <section class="slide">
+                <h2>HTML as data structures</h2>
 
-        <!-- End extension snippets. -->
+                <div class="slide">
+
+                    <code class="reagent">
+                    [:h4 (str "Header")]
+                    </code>
+                </div>
+
+                <div class="slide">
+
+                    <code class="reagent">
+                    [:h4 (if (< 1 0) (str "Header")
+                                      (str "Footer"))]
+                    [:div ""]
+                    </code>
+                </div>
+                            </section>
+
+
+
+                <!-- deck.status snippet -->
+                <p class="deck-status" aria-role="status">
+                    <span class="deck-status-current"></span>
+                    /
+                    <span class="deck-status-total"></span>
+                </p>
+
+                <!-- End extension snippets. -->
 
         </div>
 
@@ -155,6 +183,7 @@
         <script>
          window.klipse_settings = {
              selector: '.clojure',
+             selector_reagent: '.reagent',
              codemirror_options_in: {
                  lineWrapping: true,
                  autoCloseBrackets: true
