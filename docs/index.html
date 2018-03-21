@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="viewport" content="width=1024, user-scalable=no">
+
+        <link rel="shortcut icon" href="./favicon.png">
+        <title>Clojure Tutorial</title>
+
+
+        <!-- Required stylesheet -->
+        <link rel="stylesheet" media="screen" href="deckjs/core/deck.core.css">
+
+        <!-- Extension CSS files go here. Remove or add as needed. -->
+        <link rel="stylesheet" media="screen" href="deckjs/extensions/goto/deck.goto.css">
+        <link rel="stylesheet" media="screen" href="deckjs/extensions/menu/deck.menu.css">
+        <link rel="stylesheet" media="screen" href="deckjs/extensions/navigation/deck.navigation.css">
+        <link rel="stylesheet" media="screen" href="deckjs/extensions/status/deck.status.css">
+        <link rel="stylesheet" media="screen" href="deckjs/extensions/scale/deck.scale.css">
+
+        <link rel="stylesheet" media="screen" href="deckjs/themes/style/klipse.css">
+
+        <link rel="stylesheet" media="screen" href="deckjs/themes/transition/horizontal-slide.css">
+
+
+        <link rel="stylesheet" type="text/css" href="https://storage.googleapis.com/app.klipse.tech/css/codemirror.css">
+
+        <!-- Required Modernizr file -->
+        <script src="deckjs/modernizr.custom.js"></script>
+    </head>
+    <body>
+        <style>
+        </style
+        >
+        <div class="deck-container">
+
+
+            <!-- slide 1  -->
+
+            <section class="slide" id="title-slide">
+                <h1>A perfect match: MQTT & Clojure</h1>
+            </section>
+
+
+            <!-- slide 2  -->
+
+            <section class="slide">
+                <h2>$ whoami </h2>
+            </section>
+
+
+            <!-- slide 3 -->
+
+            <section class="slide">
+                <h2>agenda </h2>
+            </section>
+
+
+            <!-- slide 4 -->
+
+            <section class="slide">
+                <h2>problem scenario </h2>
+            </section>
+
+
+            <!-- slide 5 -->
+
+            <section class="slide">
+                <h2>technical requirements </h2>
+            </section>
+
+
+            <!-- slide 6 -->
+
+            <section class="slide">
+                <h2>technical preferences</h2>
+            </section>
+
+            <!-- slide 7 -->
+            <!-- slide 8 -->
+            <!-- slide 9 -->
+            <!-- slide 10-->
+            <!-- slide 11-->
+            <!-- slide 12-->
+
+
+        </div>
+        <!-- deck.status snippet -->
+        <p class="deck-status" aria-role="status">
+            <span class="deck-status-current"></span>
+            /
+            <span class="deck-status-total"></span>
+        </p>
+
+        <!-- End extension snippets. -->
+
+</div>
+
+        <!-- Required JS files. -->
+        <script src="deckjs/jquery.min.js"></script>
+        <script src="deckjs/core/deck.core.js"></script>
+
+        <!-- Extension JS files. Add or remove as needed. -->
+        <script src="deckjs/extensions/menu/deck.menu.js"></script>
+        <script src="deckjs/extensions/status/deck.status.js"></script>
+        <script src="deckjs/extensions/fullscreen/deck.fullscreen.js"></script>
+
+        <script>
+         $(function() {
+             $.deck('.slide', {
+                 countNested: false
+             });
+         });
+        </script>
+
+        <script>
+         window.klipse_settings = {
+             selector: '.clojure',
+             codemirror_options_in: {
+                 lineWrapping: true,
+                 autoCloseBrackets: true
+             },
+             codemirror_options_out: {
+                 lineWrapping: true
+             }
+         };
+        </script>
+
+
+
+        <script src="https://storage.googleapis.com/app.klipse.tech/plugin/js/klipse_plugin.js?aa1"></script>
+        <!-- <script src="http://localhost:5014/plugin/js/klipse_plugin.js"></script> -->
+
+    </body>
+</html>
