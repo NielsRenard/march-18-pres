@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=1024, user-scalable=no">
 
         <link rel="shortcut icon" href="./favicon.png">
-        <title>Clojure Tutorial</title>
+        <title>presentation blue</title>
 
 
         <!-- Required stylesheet -->
@@ -46,7 +46,7 @@
             <!-- slide 1  -->
 
             <section class="slide" id="title-slide">
-                <h1>A perfect match: MQTT & Clojure</h1>
+                <h1>Data from Front to Back</h1>
             </section>
 
 
@@ -54,6 +54,14 @@
 
             <section class="slide">
                 <h2>$ whoami </h2>
+                <ul style="list-style:none;">
+                    <li>Niels</li>
+                    <li>studied Chinese</li>
+                    <li>mostly backend dev</li>
+                    <li>started in banking, now energy</li>
+                    <li>like to solve problems </li>
+                    <li class ="slide"> Clojure </li>
+                </ul>
 
             </section>
 
@@ -61,38 +69,160 @@
             <!-- slide 3 -->
 
             <section class="slide">
-                <h2>agenda </h2>
-                <div class="slide">
-                    <div class="clojure">
-                        (+ 1 1)
+                <h2>Agenda </h2>
+                <ul>
+                    <div class="slide">
+                        <h4>Setting the stage </h4>
+                        <li>Business case</li>
+                        <li>Requirements</li>
+                        <li>Our solution</li>
                     </div>
-                </div>
 
+                    <br>
+
+                    <div class="slide">
+                        <h4>code code code</h4>
+                        <li>MQTT</li>
+                        <li>Clojure</li>
+                        <li>Hiccup</li>
+                    </div>
+                </ul>
             </section>
 
 
             <!-- slide 4 -->
 
             <section class="slide">
-                <h2>problem scenario </h2>
+                <h2>Business Case</h2>
+
+                <div class="slide">
+                    <li>Data collection (what?)</li>
+                </div>
+
+                <div class="slide">
+                    <li>Authorization management (who?)</li>
+                </div>
+
+                <div class="slide">
+                    <li>Data visualization (how?)</li>
+                </div>
             </section>
 
 
             <!-- slide 5 -->
 
             <section class="slide">
-                <h2>technical requirements </h2>
+                <h2>Requirements</h2>
             </section>
 
 
-            <!-- slide 6 -->
+            <!-- slide 6  -->
 
             <section class="slide">
-                <h2>technical preferences</h2>
+                <h2>MQTT versus HTTP</h2>
+
+                <table style="width:100%">
+                    <tr>
+                        <th>HTTP</th>
+                        <th>MQTT</th>
+                    </tr>
+                    <tr class="slide">
+                        <td>document centric</td>
+                        <td>data centric</td>
+
+                    </tr>
+
+                    <tr class="slide">
+                        <td>request/response</td>
+                        <td>publish/subscribe</td>
+                    </tr>
+                    <tr class="slide">
+                        <td>1-1</td>
+                        <td>1-to-0; 1-to-1; 1-to-n</td>
+                    </tr>
+
+                    <tr class="slide">
+                        <td>text-based</td>
+                        <td>binary format</td>
+                    </tr>
+                    <tr class="slide">
+                        <td>web server</td>
+                        <td>broker</td>
+                    </tr>
+                    <tr class="slide">
+                        <td>min 18 bytes</td>
+                        <td>min 2 bytes</td>
+                    </tr>
+                </table>
             </section>
 
 
             <!-- slide 7 -->
+
+            <section class="slide">
+                <h2>Introducing... Clojure!</h2>
+
+            </section>
+
+            <section class="slide">
+                <h2>S-expressions</h2>
+                <div class="clojure">
+                    ;;everything is wrapped in a data structure
+                    ;;first element is the operator
+                    (+ 1 1)
+
+                </div>
+            </section>
+
+
+            <!-- slide 7 -->
+
+            <section class="slide">
+                <h2>Functions</h2>
+
+
+
+                <div class="slide">
+                    <h3>Regular function</h3>
+                    <div class="clojure">
+                        (def greeter
+                        (fn [name]
+                        (str "Hello, " name)))
+
+                        ;;calling the function
+                        (greeter "batman")
+
+                        ""
+                    </div>
+                </div>
+
+                <div class="slide">
+                    <h3>Higher order function</h3>
+                    <p> "A function that takes a function, or returns a function"</p>
+                    <div class="clojure">
+                        ;;a fn that takes 1 argument: greeting
+                        ;;and returns a fn that also takes 1 argument: name
+
+                        (def greeter-generator
+                        (fn [greeting]
+                        (fn [name]
+                        (str greeting ", " name))));;
+
+                    </div>
+                    <div class="slide">
+                        <div class="clojure">
+                            ;;generate some greeter functions
+                            (def fr-greeter (greeter-generator "bonjour"))
+                            (def jp-greeter (greeter-generator "こんにちは"))
+
+                            ;;calling our generated functions
+                            (jp-greeter "satoshi")
+                            (fr-greeter "Pierrot");;
+                        </div>
+                    </div>
+                </div>
+            </section>
+
 
             <!-- slide 8 -->
             <!-- slide 9 -->
@@ -100,34 +230,7 @@
             <!-- slide 11-->
             <!-- slide 12-->
 
-            <section class="slide">
-                <h2>MQTT</h2>
 
-                <table style="width:100%;border:1px solid;">
-                    <tr>
-                        <th>HTTP</th>
-                        <th>MQTT</th>
-                    </tr>
-                    <tr>
-                        <td>document centric</td>
-                        <td>data centric</td>
-
-                    </tr>
-                    <tr>
-                        <td>one-to-one</td>
-                        <td>one-to-many</td>
-
-                    </tr>
-                    <tr>
-                        <td>text-based</td>
-                        <td>binary format</td>
-                    </tr>
-                    <tr>
-                        <td>web server</td>
-                        <td>broker</td>
-                    </tr>
-                </table>
-            </section>
 
 
             <section class="slide">
@@ -148,18 +251,18 @@
                     [:div ""]
                     </code>
                 </div>
-                            </section>
+            </section>
 
 
 
-                <!-- deck.status snippet -->
-                <p class="deck-status" aria-role="status">
-                    <span class="deck-status-current"></span>
-                    /
-                    <span class="deck-status-total"></span>
-                </p>
+            <!-- deck.status snippet -->
+            <p class="deck-status" aria-role="status">
+                <span class="deck-status-current"></span>
+                /
+                <span class="deck-status-total"></span>
+            </p>
 
-                <!-- End extension snippets. -->
+            <!-- End extension snippets. -->
 
         </div>
 
