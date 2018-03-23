@@ -145,8 +145,21 @@
             <section class="slide">
                 <h2>Enter MQTT</h2>
                 <p>
-                "MQTT is a light weight protocol that implements a client/broker architecture. Originally developed as a machine to machine protocol by IBM and is now an open protocol."
-                <p>
+                    "MQTT is a light weight protocol that implements a client/broker architecture. Originally developed as a machine to machine protocol by IBM and is now an open protocol."
+                </p>
+
+                <div class="slide">
+                    <h4> Practical use cases </h4>
+                    <li> Industrial sensor monitoring (Hz, Pa, °C, m/s) </li>
+                    <li> Medical implant monitoring (pacemakers)</li>
+                    <li> Mobile, FB Messenger, Apple notifications</li>
+                    <li> Home automation</li>
+                </div>
+                <br>
+                <div class="slide">
+                    <h4>in short:</h4>
+                    <p>Anything machine-to-machine </p>
+                </div>
             </section>
 
 
@@ -188,14 +201,43 @@
                         <td>min 18 bytes</td>
                         <td>min 2 bytes</td>
                     </tr>
+                    <tr class="slide">
+                        <td>/</td>
+                        <td>quality of service</td>
+                    </tr>
+                    <tr class="slide">
+                        <td>/</td>
+                        <td>last will & testament</td>
+                    </tr>
                 </table>
+
+                <div class="slide">
+                    <br>
+                    <b>...and MQTT can do websockets!</b>
+                </div>
             </section>
 
 
             <!-- slide 7 -->
 
             <section class="slide">
+                <h2> visuals and demo </h2>
+                <img src="./img/decoupling.png">
+            </section>
+
+
+
+            <section class="slide">
                 <h2>Introducing... Clojure!</h2>
+                <p>
+                WIP
+                in a nutshell
+                dynamic
+                immutable
+                functional
+                aims to simplify concurrency
+                    made FOR the JVM
+                </p>
 
             </section>
 
@@ -214,8 +256,6 @@
 
             <section class="slide">
                 <h2>Functions</h2>
-
-
 
                 <div class="slide">
                     <h3>Regular function</h3>
