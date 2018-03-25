@@ -212,8 +212,6 @@
                 </table>
 
                 <div class="slide">
-                    <br>
-                    <b>...and MQTT can do websockets!</b>
                 </div>
             </section>
 
@@ -221,23 +219,30 @@
             <!-- slide 7 -->
 
             <section class="slide">
-                <h2> visuals and demo </h2>
+                <h2> demo </h2>
                 <img src="./img/decoupling.png">
             </section>
 
 
 
             <section class="slide">
-                <h2>Introducing... Clojure!</h2>
-                <p>
-                WIP
-                in a nutshell
-                dynamic
-                immutable
-                functional
-                aims to simplify concurrency
-                    made FOR the JVM
-                </p>
+                <h2>Why did we choose Clojure? </h2>
+                <ul>
+                    <h4>in a nutshell</h4>
+                    <li>dynamic</li>
+                    <li>functional</li>
+                    <li>immutable</li>
+                    <li>simplifies concurrency</li>
+                    <li>made FOR the JVM</li>
+                </ul>
+
+                <div class="slide">
+                    <br>
+                    <h6>Have you ever looked at any of the other JVM languages and thought, that's exciting I'd like to play with this?</h6>
+
+                    <iframe class="slide" width="560" height="315" src="https://www.youtube.com/embed/Gta0JtNzTdc?start=855" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                    <p>'Sure. Clojure. Well yeah I mean, as an old lisp guy, it's a lisp, right. And I think Rich Hickey has done some marvelous work in coming up with a clear conceptual model of how to write code that scales well. Not taking the pure functional approach of total immutability but having controlled mutability so you can have efficient datastructures but being able to reason about systems in the large, basically as if they were functional, and I think it's a really interesting mix. And of course it's a lisp so that makes it even nicer. But I realize that's not a shared taste and that's ok too.'
+                </div>
 
             </section>
 
@@ -298,8 +303,63 @@
                 </div>
             </section>
 
-
             <!-- slide 8 -->
+            <section class="slide">
+                <h2>Help me fix these tests</h2>
+
+
+                <div class="slide">
+                    <h4>String interop</h4>
+                    <p> The dot notation is used to call methods on the host language</p>
+                    <div class="clojure">
+                        (def solution "answer goes here")
+
+                        ;;don't touch this
+                        (if (=  solution (.toUpperCase "bbq ribs"))
+                        "correct!"
+                        "not quite")
+                    </div>
+                </div>
+
+                <div class="slide">
+                    <h4>String interop 2</h4>
+                    <p>a, b or c?</p>
+                    <div class="clojure">
+                        (def solution "answer goes here")
+
+                        ;;don't touch this
+                        (if (=  solution (.charAt "bbq ribs" 6))
+                        "correct!"
+                        "not quite")
+                    </div>
+
+                    <div class="slide">
+                        <h4>String interop 3</h4>
+                        <p>Chaining functions goes 'right to left...'</p>
+                        <div class="clojure">
+                            (def solution "answer goes here")
+
+                            ;;don't touch this
+                            (if (=  solution (.toUpperCase (.substring "bbq ribs" 0 3)))
+                            "correct!"
+                            "not quite")
+                        </div>
+                        <div class="slide">
+                            <h4>String interop 4</h4>
+                            <p>...but with -> notation, chaining starts to look like java 8 streams</p>
+                            <div class="clojure">
+                                (def solution "answer goes here")
+
+                                ;;don't touch this
+                                (if (=  solution (-> "bbq ribs"
+                                .toUpperCase
+                                (.substring  4 8)))
+                                "correct!"
+                                "not quite")
+                            </div>
+
+
+            </section>
             <!-- slide 9 -->
             <!-- slide 10-->
             <!-- slide 11-->
@@ -339,43 +399,43 @@
 
             <!-- End extension snippets. -->
 
-        </div>
+                    </div>
 
-        <!-- Required JS files. -->
-        <script src="deckjs/jquery.min.js"></script>
-        <script src="deckjs/core/deck.core.js"></script>
+                    <!-- Required JS files. -->
+                    <script src="deckjs/jquery.min.js"></script>
+                    <script src="deckjs/core/deck.core.js"></script>
 
-        <!-- Extension JS files. Add or remove as needed. -->
-        <script src="deckjs/extensions/menu/deck.menu.js"></script>
-        <script src="deckjs/extensions/status/deck.status.js"></script>
-        <script src="deckjs/extensions/fullscreen/deck.fullscreen.js"></script>
+                    <!-- Extension JS files. Add or remove as needed. -->
+                    <script src="deckjs/extensions/menu/deck.menu.js"></script>
+                    <script src="deckjs/extensions/status/deck.status.js"></script>
+                    <script src="deckjs/extensions/fullscreen/deck.fullscreen.js"></script>
 
-        <script>
-         $(function() {
-             $.deck('.slide', {
-                 countNested: false
-             });
-         });
-        </script>
+                    <script>
+                     $(function() {
+                         $.deck('.slide', {
+                             countNested: false
+                         });
+                     });
+                    </script>
 
-        <script>
-         window.klipse_settings = {
-             selector: '.clojure',
-             selector_reagent: '.reagent',
-             codemirror_options_in: {
-                 lineWrapping: true,
-                 autoCloseBrackets: true
-             },
-             codemirror_options_out: {
-                 lineWrapping: true
-             }
-         };
-        </script>
+                    <script>
+                     window.klipse_settings = {
+                         selector: '.clojure',
+                         selector_reagent: '.reagent',
+                         codemirror_options_in: {
+                             lineWrapping: true,
+                             autoCloseBrackets: true
+                         },
+                         codemirror_options_out: {
+                             lineWrapping: true
+                         }
+                     };
+                    </script>
 
 
 
-        <script src="https://storage.googleapis.com/app.klipse.tech/plugin/js/klipse_plugin.js?aa1"></script>
-        <!-- <script src="http://localhost:5014/plugin/js/klipse_plugin.js"></script> -->
+                    <script src="https://storage.googleapis.com/app.klipse.tech/plugin/js/klipse_plugin.js?aa1"></script>
+                    <!-- <script src="http://localhost:5014/plugin/js/klipse_plugin.js"></script> -->
 
     </body>
 </html>
