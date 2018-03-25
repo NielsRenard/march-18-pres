@@ -240,19 +240,115 @@
                     <br>
                     <h6>Have you ever looked at any of the other JVM languages and thought, that's exciting I'd like to play with this?</h6>
 
-                    <iframe class="slide" width="560" height="315" src="https://www.youtube.com/embed/Gta0JtNzTdc?start=855" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-                    <p>'Sure. Clojure. Well yeah I mean, as an old lisp guy, it's a lisp, right. And I think Rich Hickey has done some marvelous work in coming up with a clear conceptual model of how to write code that scales well. Not taking the pure functional approach of total immutability but having controlled mutability so you can have efficient datastructures but being able to reason about systems in the large, basically as if they were functional, and I think it's a really interesting mix. And of course it's a lisp so that makes it even nicer. But I realize that's not a shared taste and that's ok too.'
+                    <div>
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/Gta0JtNzTdc?start=855" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                        <p>'Sure. Clojure. Well yeah I mean, as an old lisp guy, it's a lisp, right. And I think Rich Hickey has done some marvelous work in coming up with a clear conceptual model of how to write code that scales well. Not taking the pure functional approach of total immutability but having controlled mutability so you can have efficient datastructures but being able to reason about systems in the large, basically as if they were functional, and I think it's a really interesting mix. And of course it's a lisp so that makes it even nicer. But I realize that's not a shared taste and that's ok too.'</p>
+                    </div>
                 </div>
 
             </section>
 
             <section class="slide">
-                <h2>S-expressions</h2>
-                <div class="clojure">
-                    ;;everything is wrapped in a data structure
-                    ;;first element is the operator
-                    (+ 1 1)
+                <h2>Building Blocks</h2>
 
+                <div class="slide">
+                    <div class="clojure">
+                        ;;everything is wrapped in a data structure
+                        ;;first element is the operator
+                        (+ 1 1)
+                    </div>
+                </div>
+
+                <div class="slide">
+                    <div class="clojure">
+                        ;;functions and values are defined with def, or defn
+                        (def x 3)
+                        (+ x 5)
+                    </div>
+
+                    <div class="clojure">
+                        ;;let's create a function
+                        (defn returns-eight [params] "Functions can have a doc-string"
+                        8)
+
+                        (returns-eight)
+                    </div>
+
+                    <div class="clojure">
+                        ;;parameters go in the square brackets
+                        (defn returns-something [params]
+                        "returns what is passed in"
+                        params)
+
+                        (returns-something 5)
+                    </div>
+
+                    <div class="clojure">
+                        (defn double-it [value]
+                        (* 2 value))
+
+                        (double-it 4)
+                    </div>
+                </div>
+            </section>
+
+
+            <section class="slide">
+                <h2>Collections</h2>
+                <p>Most problems can be solved with four basic collections</p>
+                <div class="slide">
+                    <h4>Vectors</h4>
+                    <div class="clojure">
+                        ;;fast lookup
+                        ;;support random access
+                        (vector 1 2 3 4)
+                    </div>
+                    <div class="clojure">
+                        ;;shorthand
+                        [5 6 7 8]
+                    </div>
+                </div>
+                <div class="slide">
+                    <h4>Lists</h4>
+                    <div class="clojure">
+                        ;;cheap to add to
+                        ;;singly-linked, grow at the front
+                        (list 1 2 3 4)
+                    </div>
+                    <div class="clojure">
+                        ;;shorthand
+                        '(5 4 3 2)
+                    </div>
+                </div>
+                <div class="slide">
+                    <h4>Maps</h4>
+                    <div class="clojure">
+                        ;;can take most things as keys
+                        {"x" 8, "y" 12, :a  3, "a-key" "a-value"}
+                    </div>
+                    <div class="slide">
+                        <div class="clojure">
+                            ;;can nest
+                            (def nest {:name "hippo", :details {:location {:city "Amsterdam" :zoo "Artis"}
+                            :comment {:d "please stop nesting"}}})
+                            ;;show get-in
+                            (get-in nest [])
+                        </div>
+                    </div>
+                </div>
+                <div class="slide">
+                    <h4>Sets</h4>
+                    <div class="clojure">
+                        ;;don't like duplicates
+                        #{1 2 3}
+                    </div>
+                </div>
+                <div class="slide">
+                    <div class="clojure">
+                        ;;convert a list to a set
+                        (def list '(1 2 2 3 3 3 4))
+                        (set list);;
+                    </div>
                 </div>
             </section>
 
@@ -286,7 +382,7 @@
                         (def greeter-generator
                         (fn [greeting]
                         (fn [name]
-                        (str greeting ", " name))));;
+                        (str greeting ", " name))))
 
                     </div>
                     <div class="slide">
@@ -294,10 +390,13 @@
                             ;;generate some greeter functions
                             (def fr-greeter (greeter-generator "bonjour"))
                             (def jp-greeter (greeter-generator "こんにちは"))
-
+                            (fn? jp-greeter)
+                        </div>
+                        <div class="clojure">
                             ;;calling our generated functions
                             (jp-greeter "satoshi")
-                            (fr-greeter "Pierrot");;
+                            (fr-greeter "Pierrot")
+                            ;;
                         </div>
                     </div>
                 </div>
@@ -305,7 +404,7 @@
 
             <!-- slide 8 -->
             <section class="slide">
-                <h2>Help me fix these tests</h2>
+                <h2>That's it! Now help me fix these tests</h2>
 
 
                 <div class="slide">
@@ -346,46 +445,106 @@
                         </div>
                         <div class="slide">
                             <h4>String interop 4</h4>
-                            <p>...but with -> notation, chaining starts to look like java 8 streams</p>
+                            <p>...but with
+                                <a target="_blank" href="https://clojure.org/guides/threading_macros">
+                                    threading macro </a> i.e. arrow notation ->, chaining starts to look like java 8 streams</p>
                             <div class="clojure">
                                 (def solution "answer goes here")
 
                                 ;;don't touch this
                                 (if (=  solution (-> "bbq ribs"
+                                (.replace "ribs" "sauce")
+                                (.substring 4 9)
                                 .toUpperCase
-                                (.substring  4 8)))
+                                ))
                                 "correct!"
                                 "not quite")
                             </div>
-
-
+                        </div>
             </section>
+
             <!-- slide 9 -->
+
+            <section class="slide">
+                <h2>Two more tests, from clojure core</h2>
+
+                <div class="slide">
+                    <h4>(filter [pred coll])</h4>
+                    <p>filter takes a predicate, applies it to a collection, and returns the values for which the predicate is true.
+                        <br> Hint: docs for <a target="_blank" href="http://clojuredocs.org/clojure.core/even_q">
+                            (even?)</a></p>
+                    <div class="clojure">
+                        (def solution "answer goes here (but it's not a string)")
+
+                        ;;don't touch this
+                        (if (=  solution (filter even? [1 2 3 4 5 6 7]))
+                        "correct!"
+                        "not quite")
+                    </div>
+                </div>
+
+                <div class="slide">
+                    <h4>(frequencies [coll])</h4>
+                    <p>Returns a map of distinct items in a collection with how often they appear. <br>
+                        Hint: docs for <a target="_blank" href="http://clojuredocs.org/clojure.core/frequencies">
+                        (frequencies) </a>
+                    </p>
+                    <div class="clojure">
+                        (def solution {"answer goes" "here"})
+
+                        ;;don't touch this
+                        (if (=  solution (frequencies ["x" "x" "x" "y" "y" "z"]))
+                        "correct!"
+                        "not quite")
+                    </div>
+            </section>
             <!-- slide 10-->
             <!-- slide 11-->
             <!-- slide 12-->
 
 
 
-
             <section class="slide">
                 <h2>HTML as data structures</h2>
-
                 <div class="slide">
-
                     <code class="reagent">
                     [:h4 (str "Header")]
                     </code>
                 </div>
 
                 <div class="slide">
+                    <div class="reagent">
+                        (defn logged-in? [user]
+                        (get user :logged-in?))
 
-                    <code class="reagent">
-                    [:h4 (if (< 1 0) (str "Header")
-                                      (str "Footer"))]
-                    [:div ""]
-                    </code>
+                        (def user {:name Harvey :logged-in? false})
+
+                        [:h4 (if (logged-in? user) (str "Welcome")
+                        (str "Please log in"))]
+                    </div>
                 </div>
+            </section>
+
+            <section class="slide">
+                <h2>Wrapping up</h2>
+                <h4>Links</h4>
+                <ul>
+                    <li>
+                        <a target="_blank" href="https://www.hivemq.com/blog/how-to-get-started-with-mqtt">MQTT 101, by HiveMQ</a>
+                    </li>
+                    <li>
+                        <a target="_blank" href="https://www.clojure.org/">clojure.org</a>
+                    </li>
+                    <li>
+                        <a target="_blank" href="https://www.braveclojure.com/foreword/">Clojure for the Brave and True</a>
+                    </li>
+                    <li>
+                        <a target="_blank" href="https://www.youtube.com/watch?v=P76Vbsk_3J0">Youtube: Clojure for Java Programmers</a>
+                    </li>
+                    <h2 class="slide">
+                        <br>
+                        Thanks for your attention!
+                    </h1>
             </section>
 
 
@@ -399,43 +558,43 @@
 
             <!-- End extension snippets. -->
 
-                    </div>
+                </div>
 
-                    <!-- Required JS files. -->
-                    <script src="deckjs/jquery.min.js"></script>
-                    <script src="deckjs/core/deck.core.js"></script>
+                <!-- Required JS files. -->
+                <script src="deckjs/jquery.min.js"></script>
+                <script src="deckjs/core/deck.core.js"></script>
 
-                    <!-- Extension JS files. Add or remove as needed. -->
-                    <script src="deckjs/extensions/menu/deck.menu.js"></script>
-                    <script src="deckjs/extensions/status/deck.status.js"></script>
-                    <script src="deckjs/extensions/fullscreen/deck.fullscreen.js"></script>
+                <!-- Extension JS files. Add or remove as needed. -->
+                <script src="deckjs/extensions/menu/deck.menu.js"></script>
+                <script src="deckjs/extensions/status/deck.status.js"></script>
+                <script src="deckjs/extensions/fullscreen/deck.fullscreen.js"></script>
 
-                    <script>
-                     $(function() {
-                         $.deck('.slide', {
-                             countNested: false
-                         });
+                <script>
+                 $(function() {
+                     $.deck('.slide', {
+                         countNested: false
                      });
-                    </script>
+                 });
+                </script>
 
-                    <script>
-                     window.klipse_settings = {
-                         selector: '.clojure',
-                         selector_reagent: '.reagent',
-                         codemirror_options_in: {
-                             lineWrapping: true,
-                             autoCloseBrackets: true
-                         },
-                         codemirror_options_out: {
-                             lineWrapping: true
-                         }
-                     };
-                    </script>
+                <script>
+                 window.klipse_settings = {
+                     selector: '.clojure',
+                     selector_reagent: '.reagent',
+                     codemirror_options_in: {
+                         lineWrapping: true,
+                         autoCloseBrackets: true
+                     },
+                     codemirror_options_out: {
+                         lineWrapping: true
+                     }
+                 };
+                </script>
 
 
 
-                    <script src="https://storage.googleapis.com/app.klipse.tech/plugin/js/klipse_plugin.js?aa1"></script>
-                    <!-- <script src="http://localhost:5014/plugin/js/klipse_plugin.js"></script> -->
+                <script src="https://storage.googleapis.com/app.klipse.tech/plugin/js/klipse_plugin.js?aa1"></script>
+                <!-- <script src="http://localhost:5014/plugin/js/klipse_plugin.js"></script> -->
 
     </body>
 </html>
