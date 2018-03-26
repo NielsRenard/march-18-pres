@@ -268,7 +268,9 @@
 
                     <div class="clojure">
                         ;;let's create a function
-                        (defn returns-eight [params] "Functions can have a doc-string"
+                        (defn returns-eight
+                        "Functions can have a doc-string"
+                        [params]
                         8)
 
                         (returns-eight)
@@ -276,8 +278,10 @@
 
                     <div class="clojure">
                         ;;parameters go in the square brackets
-                        (defn returns-something [params]
+                        (defn returns-something
                         "returns what is passed in"
+                        [params]
+
                         params)
 
                         (returns-something 5)
@@ -434,7 +438,7 @@
 
                     <div class="slide">
                         <h4>String interop 3</h4>
-                        <p>Chaining functions reads inside to outside: (2-outside(1-inside)</p>
+                        <p>Chaining functions reads inside to outside: (2-outside(1-inside))</p>
                         <div class="clojure">
                             (def solution "answer goes here")
 
@@ -513,6 +517,7 @@
                 </div>
 
                 <div class="slide">
+                    <p>With hiccup we are able to intermingle our logic and our "HTML". Try changing the :logged-in value inside the user map to true.</p>
                     <div class="reagent">
                         (defn logged-in? [user]
                         (get user :logged-in?))
